@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import piggy_bank_funcs as pb
 from PIL import Image
 
