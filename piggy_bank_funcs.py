@@ -13,6 +13,7 @@ def input_email():
     st.write('Please Submit Your Email Address to be Entered to Win the Big Prize')
     email = st.text_input(label='Email Address')
     name = st.text_input(label='Please Enter Your Name')
+    return email, name
 
 def send_email(email, name):
     try:
