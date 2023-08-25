@@ -1,5 +1,5 @@
 [server]
-fileWatcherType = none
+fileWatcherType = "none"
 
 [browser]
 gatherUsageStats = False
