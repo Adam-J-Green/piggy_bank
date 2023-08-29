@@ -13,11 +13,13 @@ def input_email():
     st.write('Please Submit Your Email Address to be Entered to Win the Big Prize')
     email = st.text_input(label='Email Address')
     name = st.text_input(label='Please Enter Your Name')
-    return email, name
+    transaction_id = st.text_input(label = 'Please Enter Your Transaction ID')
+    return email, name, transaction_id
 
-def send_email(email, name):
+def send_email(email, name, transaction_id):
+    message = email+'/'+name+'/'+transaction_id
     try:
-        message = MIMEText(email, name)
+        message = MIMEText(message)
         message['To'] = st.secrets['email_user']
         message['From'] = st.secrets['email_user']
         message['Subject'] = 'Giveaway Entry'
@@ -27,7 +29,7 @@ def send_email(email, name):
         server.starttls(context=context)
         server.login(st.secrets['email_user'], st.secrets['email_pass'])
         server.send_message(message, st.secrets['email_user'], st.secrets['email_user'])
-        st.success('You have successfully been entered, please monitor your email to see if you won. \nDraws happen on the last Friday of evry month.')
+        st.success('You have successfully been entered, please monitor your email to see if you won. \n Please note, regardless of the number of times you submit your email, you will recieve only 1 entry per donation. Feel free to scan the QR again to make a second donation!')
     except Exception as error:
         print(error)
         print('Unfortunately their was a submission error, please try again. If this error continues, please email "crisismild@gmail.com" with the subject "Please help me I am Drowning".') 
