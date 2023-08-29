@@ -13,9 +13,9 @@ def main():
         st.image(im)
 
     with col2:
-        email, name = pb.input_email()
+        email, name, transaction_id = pb.input_email()
         if st.button('Submit Entry'):
-            pb.send_email(email, name)
+            pb.send_email(email, name, transaction_id)
 
 
 
