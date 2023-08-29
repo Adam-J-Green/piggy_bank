@@ -23,12 +23,13 @@ def send_email(email, name):
         message['Subject'] = 'Giveaway Entry'
 
         context = ssl.create_default_context()
-        server = smtplib.SMTP_SSL(host = 'smtp.gmail.com', context=context, port = 587)
-        server.starttls()
+        server = smtplib.SMTP(host = 'smtp.gmail.com', port = 587)
+        server.starttls(context=context)
         server.login(st.secrets['email_user'], st.secrets['email_pass'])
-        server.send_message(st.secrets['email_user'], st.secrets['email_user'], message.as_string())
+        server.send_message(message, st.secrets['email_user'], st.secrets['email_user'])
         st.success('You have successfully been entered, please monitor your email to see if you won. \nDraws happen on the last Friday of evry month.')
-    except:
+    except Exception as error:
+        print(error)
         print('Unfortunately their was a submission error, please try again. If this error continues, please email "crisismild@gmail.com" with the subject "Please help me I am Drowning".') 
 
 
